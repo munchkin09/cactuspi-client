@@ -164,6 +164,13 @@ function displayTime(ledMatrix) {
   child.stderr.pipe(process.stderr);
 }
 
+function scrollText(ledMatrix) {
+  const cmdDisplayClock = `sudo ${ledMatrix.path}/examples-api-use/clock -f ${ledMatrix.path}/fonts/8x13.bdf -d "%I:%M %p" -y 8 ${ledOptions}`;
+  const child = exec(cmdDisplayClock);
+  child.stdout.pipe(process.stdout);
+  child.stderr.pipe(process.stderr);
+}
+
 function killProcess(grepPattern) {
   const cmdKillProcess = `sudo kill $(ps aux | grep '${grepPattern}' | awk '{print $2}')`;
   exec(cmdKillProcess);
@@ -177,5 +184,10 @@ function generateTextImage({ text, filename, ledRows }) {
 function buildLedMatrixOptions(options) {
   return `--led-rows=${options.ledRows} --led-chain=${options.ledChain} ${
     options.ledNoHardwarePulse ? '--led-no-hardware-pulse' : ''
-  } --led-gpio-mapping=${options.ledGpioMapping}`;
+  } 
+  --led-gpio-mapping=${options.ledGpioMapping} 
+  --led-cols=${options.ledCols}
+  --led-brightness=${options.ledBrightness} 
+  --led-slowdown-gpio=${options.ledSlowdownGpio}
+  `;
 }
