@@ -17,7 +17,10 @@
       "ledGpioMapping": "adafruit-hat",
       "ledNoHardwarePulse": true,
       "ledRows": 32,
-      "ledChain": 2
+      "ledChain": 2,
+      "ledCols": 64,
+      "ledBrightness": 80,
+      "ledSlowdownGpio": 4
     }
   }
 }
