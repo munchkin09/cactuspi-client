@@ -182,12 +182,5 @@ function generateTextImage({ text, filename, ledRows }) {
 }
 
 function buildLedMatrixOptions(options) {
-  return `--led-rows=${options.ledRows} --led-chain=${options.ledChain} ${
-    options.ledNoHardwarePulse ? '--led-no-hardware-pulse' : ''
-  } 
-  --led-gpio-mapping=${options.ledGpioMapping} 
-  --led-cols=${options.ledCols}
-  --led-brightness=${options.ledBrightness} 
-  --led-slowdown-gpio=${options.ledSlowdownGpio}
-  `;
+  return `--led-rows=${options.ledRows} --led-chain=${options.ledChain} ${options.ledNoHardwarePulse ? '--led-no-hardware-pulse' : ''} --led-gpio-mapping=${options.ledGpioMapping} --led-cols=${options.ledCols} --led-brightness=${options.ledBrightness} --led-slowdown-gpio=${options.ledSlowdownGpio}`;
 }
