@@ -32,12 +32,20 @@ module.exports = class PubNubService {
         }
       },
       message: (msg) => {
-        console.log('PubNub - message', msg);
+        console.log(msg.message);
         const { command } = msg.userMetadata;
-        if (command) {
-          sendCommand(command);
-        } else {
-          sendMessage(msg);
+        switch(command.name) {
+          case "message":
+            sendMessage(msg);
+            break;
+          case "command":
+            sendCommand(command);
+            break;
+          case "gif": 
+            sendGif(msg);
+            break;
+          default:
+            sendMessage("Esto es un mensaje por defecto");
         }
       },
     });
